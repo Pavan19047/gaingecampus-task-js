@@ -1,20 +1,18 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import Header from '../Header';
 import Sidebar from '../Sidebar';
-import { SLayout, SMain, SContent } from './styled';
+// We no longer import SLayout, only SMain and SContent
+import { SMain, SContent } from './styled';
 
 const Layout = () => {
   return (
-    <SLayout>
-      <Header />
-      <SMain>
-        <Sidebar />
-        <SContent>
-          <Outlet />
-        </SContent>
-      </SMain>
-    </SLayout>
+    // The <SMain> component is now the top-level container
+    <SMain>
+      <Sidebar />
+      <SContent>
+        <Outlet />
+      </SContent>
+    </SMain>
   );
 };
 

@@ -1,14 +1,9 @@
 import styled from 'styled-components';
 
-export const SLayout = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-`;
-
+// Ensure this component is exported correctly
 export const SMain = styled.main`
   display: flex;
-  flex-grow: 1;
+  height: 100vh;
   overflow: hidden;
 
   @media (max-width: 768px) {
@@ -16,6 +11,7 @@ export const SMain = styled.main`
   }
 `;
 
+// The error is because this component was likely missing the 'export' keyword
 export const SContent = styled.div`
   flex-grow: 1;
   padding: 3.2rem;
