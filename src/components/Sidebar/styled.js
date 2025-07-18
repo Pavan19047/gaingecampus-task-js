@@ -1,8 +1,7 @@
-// src/components/Sidebar/styled.js
-
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 export const SSidebar = styled.aside`
+  position: relative; /* This is crucial for positioning the card inside */
   background-color: #f7f7f8;
   width: 28rem;
   height: 100vh;
@@ -10,14 +9,12 @@ export const SSidebar = styled.aside`
   display: flex;
   flex-direction: column;
   padding: 1.2rem;
-  gap: 2rem;
   font-family: 'Helvetica Neue', sans-serif;
 
   @media (max-width: 768px) {
     width: 100%;
     height: auto;
-    border-right: none;
-    border-bottom: 1px solid #e0e0e0;
+    position: static; /* Reset position on mobile */
   }
 `;
 
@@ -26,51 +23,7 @@ export const SHeader = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 0.8rem 0.4rem;
-`;
-
-export const SLogoGroup = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-  font-size: 1.8rem;
-  font-weight: bold;
-`;
-
-export const SVersion = styled.span`
-  font-size: 1.2rem;
-  font-weight: 500;
-  color: #888;
-  margin-left: 0.4rem;
-`;
-
-// src/components/Sidebar/styled.js
-
-export const SNewChatButton = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  /* Layout properties from Figma */
-  width: 3.6rem; /* 36px */
-  height: 4rem; /* 40px */
-  border-radius: 0.5rem; /* 5px */
-  padding: 1rem; /* 10px */
-
-  /* General styles */
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 2.2rem; /* Adjusted for better fit */
-  color: #555;
-
-  /* Animation properties from Figma */
-  transition: background-color 100ms ease-out;
-
-  /* Hover state ("Variant2" from Figma) */
-  &:hover {
-    background-color: #edeef0; /* A subtle background for hover */
-    color: #000;
-  }
+  flex-shrink: 0;
 `;
 
 export const SChatList = styled.div`
@@ -79,6 +32,28 @@ export const SChatList = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
+  margin: 2rem 0;
+`;
+
+export const SNewChatButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 3.6rem;
+  height: 4rem;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 2.2rem;
+  color: #555;
+  transition: background-color 100ms ease-out;
+
+  &:hover {
+    background-color: #edeef0;
+    color: #000;
+  }
 `;
 
 export const SNavItem = styled.button`
@@ -102,7 +77,7 @@ export const SNavItem = styled.button`
 
   ${(props) =>
     props.active &&
-    css`
+    `
       background-color: #e6e6e8;
       font-weight: 500;
     `}

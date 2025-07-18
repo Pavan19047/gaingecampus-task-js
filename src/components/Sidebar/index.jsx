@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
-// Import your custom LogoWithText component
+
+// Import all necessary components and data
 import LogoWithText from '../LogoWithText';
-// Import styled-components and data
+import HumanConsultantCard from '../HumanConsultantCard';
 import {
   SSidebar, SHeader, SNewChatButton, SChatList,
   SNavItem, SItemText, SBadge, SAvatar, SDateSeparator, SFooter
 } from './styled.js';
 import { pinnedItems, folderItems } from './data.jsx';
-// Import the new, compatible icon from Material Design
+
+// Import all necessary icons
 import { MdAddComment } from 'react-icons/md';
 import { IoChatbubbleOutline } from 'react-icons/io5';
 import { VscLoading } from 'react-icons/vsc';
 
-// Reusable NavItem component
+// A small, reusable component for each item in the lists.
 const NavItem = ({ item, active }) => (
   <SNavItem active={active}>
     {item.icon === 'avatar' ? (
@@ -25,7 +27,7 @@ const NavItem = ({ item, active }) => (
   </SNavItem>
 );
 
-// Main Sidebar component
+// This is your main Sidebar component.
 const Sidebar = () => {
   const [activeChatId, setActiveChatId] = useState(1);
 
@@ -33,8 +35,6 @@ const Sidebar = () => {
     <SSidebar>
       <SHeader>
         <LogoWithText />
-        
-        {/* Use the new, compatible icon */}
         <SNewChatButton>
           <MdAddComment />
         </SNewChatButton>
@@ -72,10 +72,13 @@ const Sidebar = () => {
         <NavItem item={{ text: '경영의 어려움경영의 어려움...', icon: <IoChatbubbleOutline /> }} />
       </SChatList>
 
-      {/* Footer Section */}
+      {/* Footer loading icon */}
       <SFooter>
         <VscLoading />
       </SFooter>
+
+      {/* Human Consultant Card at the bottom */}
+      <HumanConsultantCard />
     </SSidebar>
   );
 };
