@@ -1,7 +1,7 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const SSidebar = styled.aside`
-  position: relative; /* This is crucial for positioning the card inside */
+  position: relative;
   background-color: #f7f7f8;
   width: 28rem;
   height: 100vh;
@@ -14,7 +14,7 @@ export const SSidebar = styled.aside`
   @media (max-width: 768px) {
     width: 100%;
     height: auto;
-    position: static; /* Reset position on mobile */
+    position: static;
   }
 `;
 
@@ -114,7 +114,17 @@ export const SDateSeparator = styled.div`
 `;
 
 export const SFooter = styled.div`
+  flex-shrink: 0; /* Ensures it doesn't shrink */
+  height: 1rem; /* Reserve a small space at the bottom */
+`;
+
+// This new style centers the loading spinner
+export const SLoadingWrapper = styled.div`
+  flex-grow: 1;
   display: flex;
   justify-content: center;
-  padding: 1rem;
+  align-items: center;
+  font-size: 3rem;
+  color: #888;
+  margin: 2rem 0;
 `;

@@ -30,12 +30,35 @@ export const SIconButton = styled.button`
   color: #333;
 `;
 
-export const SCounter = styled.div`
-  font-size: 1.4rem;
-  font-weight: 500;
-  background-color: #f0f4f8;
-  padding: 0.6rem 1.2rem;
-  border-radius: 1.2rem;
+export const SConsultantInfo = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  p {
+    margin: 0;
+    font-weight: 600;
+    font-size: 1.5rem;
+  }
+  span {
+    font-size: 1.2rem;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+`;
+
+export const SStatusIndicator = styled.div`
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 50%;
+  
+  /* Updated to handle all three states: online (green), offline (red), unavailable (gray) */
+  background-color: ${(props) => {
+    if (props.offline) return '#e53e3e'; // Red
+    if (props.unavailable) return '#888'; // Gray
+    return '#4caf50'; // Green (default online)
+  }}; 
 `;
 
 export const STopBarRight = styled.div`
@@ -60,6 +83,13 @@ export const SChatContainer = styled.div`
   gap: 1.6rem;
 `;
 
+export const SConsultantAvatar = styled.img`
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+`;
+
 export const SSubheading = styled.p`
   font-size: 1.4rem;
   color: #555;
@@ -77,12 +107,12 @@ export const SMainHeading = styled.h1`
 export const SInputWrapper = styled.div`
   width: 100%;
   max-width: 73.6rem;
-  background-color: #fff;
   border-radius: 1.6rem;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   margin-top: 2.4rem;
   display: flex;
   flex-direction: column;
+  background-color: #171719;
 `;
 
 export const STextInput = styled.input`
@@ -91,13 +121,11 @@ export const STextInput = styled.input`
   background: none;
   outline: none;
   font-size: 1.5rem;
-  color: #333;
-  
-  /* Adjusted padding to match the other view */
   padding: 1.2rem;
+  color: #fff;
   
   &::placeholder {
-    color: #aaa;
+    color: #888;
   }
 `;
 
@@ -119,24 +147,22 @@ export const STagButton = styled.button`
   align-items: center;
   gap: 0.6rem;
   padding: 0.8rem 1.2rem;
+  border-radius: 5rem;
   font-size: 1.3rem;
   font-weight: 500;
   cursor: pointer;
-
-  /* Increased border-radius to match the other view */
-  border-radius: 5rem;
   
   ${(props) =>
     props.active
       ? css`
-          background-color: #333;
+          background-color: #555;
           color: white;
-          border: 1px solid #333;
+          border: 1px solid #777;
         `
       : css`
-          background-color: #f0f4f8;
-          color: #555;
-          border: 1px solid #e0e0e0;
+          background-color: #444;
+          color: #ccc;
+          border: 1px solid #555;
         `}
 `;
 
@@ -154,8 +180,6 @@ export const SSubmitButton = styled.button`
   width: 4rem;
   height: 4rem;
   border-radius: 50%;
-  background-color: #f0f4f8;
-  color: #888;
   border: none;
   cursor: pointer;
   display: flex;
@@ -163,8 +187,38 @@ export const SSubmitButton = styled.button`
   align-items: center;
   font-size: 1.6rem;
   transition: background-color 0.2s;
+  background-color: #555;
+  color: #fff;
 
   &:hover {
-    background-color: #e0e6ec;
+    background-color: #666;
+  }
+`;
+
+export const SInfoBox = styled.div`
+  background-color: #f8f9fa;
+  border-radius: 1.2rem;
+  padding: 1.6rem;
+  margin-top: 2rem;
+  width: 100%;
+  max-width: 70rem;
+  text-align: center;
+  font-size: 1.3rem;
+  color: #666;
+
+  p {
+    margin: 0 0 0.8rem 0;
+    font-weight: 500;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  
+  span {
+    display: block;
+    font-size: 1.2rem;
+    line-height: 1.5;
   }
 `;
