@@ -2,7 +2,7 @@
 
 This project is a fully responsive, multi-view chat application UI built as a front-end assessment for the GaingeCampus internship program. The application was developed from a Figma design, focusing on creating a clean, functional, and pixel-perfect user experience.
 
-**[➡️ Live Demo Link Here](YOUR_NETLIFY_LINK_HERE)**
+**[➡️ Live Demo Link Here](https://robinai-gaingecampus.netlify.app/)**
 
 ---
 
