@@ -5,29 +5,28 @@ import { SMain, SContent } from './styled';
 
 const Layout = () => {
   const [activeView, setActiveView] = useState('ai');
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
-  // This function now handles the full cycle between all views
-  const cycleViews = () => {
-    if (activeView === 'ai') {
-      setActiveView('human_online');
-    } else if (activeView === 'human_online') {
-      setActiveView('human_offline');
-    } else if (activeView === 'human_offline') {
-      setActiveView('human_unavailable');
-    } else { // If unavailable, cycle back to AI
-      setActiveView('ai');
+  const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
+
+  const showView = (viewName) => {
+    setActiveView(viewName);
+    if (!isSidebarOpen) {
+      setIsSidebarOpen(true);
     }
   };
-
-  // This function specifically goes back to the AI view
-  const showAiView = () => setActiveView('ai');
   
   return (
     <SMain>
-      <Sidebar activeView={activeView} />
-      <SContent>
-        {/* Pass down the cycle and back functions to all child pages */}
-        <Outlet context={{ activeView, cycleViews, showAiView }} />
+      <Sidebar 
+        isSidebarOpen={isSidebarOpen}
+        toggleSidebar={toggleSidebar} // Pass the toggle function here
+        activeView={activeView} 
+        showView={showView}
+      />
+      
+      <SContent $isSidebarOpen={isSidebarOpen}>
+        <Outlet context={{ activeView, isSidebarOpen, toggleSidebar, showView }} />
       </SContent>
     </SMain>
   );

@@ -10,16 +10,18 @@ export const SContentWrapper = styled.div`
 
 export const STopBar = styled.header`
   height: 6.5rem;
-  padding: 1.2rem;
+  padding: 1.2rem 2.4rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: rgba(255, 255, 255, 0.8);
-  border-bottom: 1px solid #EFEFF0;
+  border-bottom: 1px solid #efeff0;
   position: sticky;
   top: 0;
-  z-index: 10;
   backdrop-filter: blur(8px);
+
+  /* Lower z-index so sidebar appears on top */
+  z-index: 10;
 `;
 
 export const SIconButton = styled.button`
@@ -52,13 +54,13 @@ export const SStatusIndicator = styled.div`
   width: 0.8rem;
   height: 0.8rem;
   border-radius: 50%;
-  
+
   /* Updated to handle all three states: online (green), offline (red), unavailable (gray) */
   background-color: ${(props) => {
     if (props.offline) return '#e53e3e'; // Red
     if (props.unavailable) return '#888'; // Gray
     return '#4caf50'; // Green (default online)
-  }}; 
+  }};
 `;
 
 export const STopBarRight = styled.div`
@@ -123,7 +125,7 @@ export const STextInput = styled.input`
   font-size: 1.5rem;
   padding: 1.2rem;
   color: #fff;
-  
+
   &::placeholder {
     color: #888;
   }
@@ -151,7 +153,7 @@ export const STagButton = styled.button`
   font-size: 1.3rem;
   font-weight: 500;
   cursor: pointer;
-  
+
   ${(props) =>
     props.active
       ? css`
@@ -215,7 +217,7 @@ export const SInfoBox = styled.div`
     align-items: center;
     gap: 0.8rem;
   }
-  
+
   span {
     display: block;
     font-size: 1.2rem;

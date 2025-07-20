@@ -4,21 +4,35 @@ import MainContent from '../components/MainContent';
 import HumanChatView from '../components/HumanChatView';
 import OfflineChatView from '../components/OfflineChatView';
 import UnavailableChatView from '../components/UnavailableChatView';
+import ConversationView from '../components/ConversationView';
 
 const MainPage = () => {
-  // Get the state and functions from the parent Layout
-  const { activeView, cycleViews, showAiView } = useOutletContext();
+  const { activeView, showView } = useOutletContext();
 
-  // Render the correct component based on the activeView state
-  if (activeView === 'ai') {
-    return <MainContent onSwitchView={cycleViews} />;
-  } else if (activeView === 'human_online') {
-    return <HumanChatView onBack={showAiView} onSwitchView={cycleViews} />;
-  } else if (activeView === 'human_offline') {
-    return <OfflineChatView onBack={showAiView} onSwitchView={cycleViews} />;
-  } else { // activeView === 'human_unavailable'
-    // The last view in the cycle only needs a back button
-    return <UnavailableChatView onBack={showAiView} />;
+  // This function is for the button INSIDE the consultant views to cycle through them.
+  const cycleHumanViews = () => {
+    if (activeView === 'human_online') {
+      showView('human_offline');
+    } else if (activeView === 'human_offline') {
+      showView('human_unavailable');
+    } else {
+      showView('ai'); // From the last view, go back to the AI welcome screen
+    }
+  };
+
+  switch (activeView) {
+    case 'ai':
+      return <MainContent onSwitchView={() => showView('human_online')} />;
+    case 'conversation':
+      return <ConversationView onBack={() => showView('ai')} />;
+    case 'human_online':
+      return <HumanChatView onBack={() => showView('ai')} onSwitchView={cycleHumanViews} />;
+    case 'human_offline':
+      return <OfflineChatView onBack={() => showView('ai')} onSwitchView={cycleHumanViews} />;
+    case 'human_unavailable':
+      return <UnavailableChatView onBack={() => showView('ai')} />;
+    default:
+      return <MainContent onSwitchView={() => showView('human_online')} />;
   }
 };
 

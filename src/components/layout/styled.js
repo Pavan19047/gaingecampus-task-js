@@ -1,17 +1,18 @@
 import styled from 'styled-components';
 
 export const SMain = styled.main`
-  display: flex;
-  height: 100vh;
-  overflow: hidden;
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-  }
+  position: relative;
+  background-color: #f8f9fa;
 `;
 
 export const SContent = styled.div`
-  flex-grow: 1;
-  overflow-y: auto;
-  /* The padding has been removed from here to fix the alignment */
+  height: 100vh;
+  overflow: hidden;
+  transition: margin-left 0.3s ease-in-out;
+  margin-left: ${(props) => (props.$isSidebarOpen ? '28rem' : '0')};
+  position: relative;
+
+  @media (max-width: 768px) {
+    margin-left: 0;
+  }
 `;

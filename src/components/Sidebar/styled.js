@@ -1,7 +1,9 @@
 import styled, { css } from 'styled-components';
 
 export const SSidebar = styled.aside`
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
   background-color: #f7f7f8;
   width: 28rem;
   height: 100vh;
@@ -9,12 +11,13 @@ export const SSidebar = styled.aside`
   display: flex;
   flex-direction: column;
   padding: 1.2rem;
-  font-family: 'Helvetica Neue', sans-serif;
+  z-index: 100;
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(${(props) => (props.$isOpen ? '0' : '-100%')});
 
   @media (max-width: 768px) {
-    width: 100%;
-    height: auto;
-    position: static;
+    width: 85%;
+    max-width: 32rem;
   }
 `;
 
@@ -26,6 +29,41 @@ export const SHeader = styled.div`
   flex-shrink: 0;
 `;
 
+export const SHeaderRight = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+`;
+
+const SHeaderButton = styled.button`
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #555;
+  width: 3.2rem;
+  height: 3.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 2.2rem;
+
+  &:hover {
+    background-color: #edeef0;
+  }
+`;
+
+export const SNewChatButton = styled(SHeaderButton)``;
+
+export const SCloseButton = styled(SHeaderButton)`
+  /* This hides the button on desktop screens */
+  display: none;
+
+  /* This makes the button visible only on mobile screens */
+  @media (max-width: 768px) {
+    display: flex;
+  }
+`;
 export const SChatList = styled.div`
   flex-grow: 1;
   overflow-y: auto;
@@ -33,27 +71,6 @@ export const SChatList = styled.div`
   flex-direction: column;
   gap: 0.4rem;
   margin: 2rem 0;
-`;
-
-export const SNewChatButton = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 3.6rem;
-  height: 4rem;
-  border-radius: 0.5rem;
-  padding: 1rem;
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 2.2rem;
-  color: #555;
-  transition: background-color 100ms ease-out;
-
-  &:hover {
-    background-color: #edeef0;
-    color: #000;
-  }
 `;
 
 export const SNavItem = styled.button`
@@ -76,8 +93,8 @@ export const SNavItem = styled.button`
   }
 
   ${(props) =>
-    props.active &&
-    `
+    props.$active &&
+    css`
       background-color: #e6e6e8;
       font-weight: 500;
     `}
@@ -114,11 +131,10 @@ export const SDateSeparator = styled.div`
 `;
 
 export const SFooter = styled.div`
-  flex-shrink: 0; /* Ensures it doesn't shrink */
-  height: 1rem; /* Reserve a small space at the bottom */
+  flex-shrink: 0;
+  height: 1rem;
 `;
 
-// This new style centers the loading spinner
 export const SLoadingWrapper = styled.div`
   flex-grow: 1;
   display: flex;
